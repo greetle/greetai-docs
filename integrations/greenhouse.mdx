@@ -1,0 +1,39 @@
+---
+title: "Tutorial: How to integrate Greenhouse"
+description: "Steps on how to integration GreetAI with Greenhouse ATS"
+icon: "code"
+---
+
+### Initialize integration from the dashboard
+
+1. Navigate to the [Integrations](app.greetai.co/organization/integrations) page
+2. Select `Integrate now` for the Greenhouse integration.
+3. You now have a `Secret Key` and Endpoint URL which is needed for the next step.
+
+### Create a Webhook using Secret Key
+
+1. Login to your Greenhouse account
+2. Navigate to the [Web Hooks](https://app7.greenhouse.io/web_hooks) page
+3. Input the following details:
+
+- **Name**: `anyname e.g greetai-webhook`
+- **URL**: The endpoint url from the previous step
+- **Secret Key**: The secret key from the previous step
+- **When**: Select `Candidate has submitted application`
+
+4. Click `Create Web Hook
+
+### Generate API Key for GreetAI
+
+1. Navigate to the [Dev Center](https://app7.greenhouse.io/configure/dev_center/credentials) page
+2. Click `Create New API Key`
+3. Input the following details:
+
+- **API Type**: Select `Harvest API`
+- **Description**: `anything you want`
+- **Partners**: Select `Custom`
+
+4. Click `Manage Permissions` and copy the API key, then paste it into a GreetAI.
+5. Select `I have stored the API key in GreetAI` and on the permissions page, select the following: `Job Posts` then save.
+
+### Test the integration
