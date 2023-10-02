@@ -1,67 +1,47 @@
 ---
-title: "Create User"
-api: "POST https://api.mintlify.com/api/user"
-description: "This endpoint creates a new user"
+title: "Invite candidate"
+api: "POST https://messaging.greetai.co/api/invite"
+description: "This endpoint invites candidate to the screening interview."
 ---
 
 ### Body
 
-<ParamField body="current_token" type="string">
-  This is the current user group token you have for the user group that you want
-  to rotate.
+<ParamField body="job_id" type="string">
+  Unique identifier of a job. Ensures that the same job does not get recreated
+  on every request.
+</ParamField>
+<ParamField body="job_title" type="string">
+  The job position name which the AI should use to conduct the screening.
+</ParamField>
+<ParamField body="job_description" type="string">
+  A high-level job description that the AI should refer to for guidance during
+  the screening process. A detailed description is preferable.
+</ParamField>
+<ParamField body="applicant_full_name" type="string">
+  The name of the candidate to be invited.
+</ParamField>
+<ParamField body="applicant_email" type="string">
+  The email address of the candidate where the invitation link will be sent.
 </ParamField>
 
 ### Response
 
-<ResponseField name="success" type="number">
-  Indicates whether the call was successful. 1 if successful, 0 if not.
-</ResponseField>
-
-<ResponseField name="user_group" type="object">
-
-The contents of the user group
-
-<Expandable title="Toggle object">
-
-<ResponseField name="team_id" type="number">
-  This is the internal ID for this user group. You don't need to record this
-  information, since you will not need to use it.
-</ResponseField>
-
-<ResponseField name="token" type="string">
-  This is the user group token (userGroupToken or USER_GROUP_TOKEN) that will be
-  used to identify which user group is viewing the dashboard. You should save
-  this on your end to use when rendering an embedded dashboard.
-</ResponseField>
-
-<ResponseField name="name" type="string">
-  This is the name of the user group provided in the request body.
-</ResponseField>
-
-<ResponseField name="provided_id" type="string">
-  This is the user_group_id provided in the request body.
-</ResponseField>
-
-<ResponseField name="api_environment_tag" type="JSON or null">
-  This is the environment tag of the user group. Possible values are 'Customer'
-  and 'Testing'. User group id's must be unique to each environment, so you can
-  not create multiple user groups with with same id. If you have a production
-  customer and a test user group with the same id, you will be required to label
-  one as 'Customer' and another as 'Testing'
-</ResponseField>
-
-</Expandable>
-
+<ResponseField name="scheduleLink" type="string">
+  URL where the candidate can schedule the screening interview.
 </ResponseField>
 
 <RequestExample>
 
 ```bash Example Request
-curl --location --request POST 'https://api.mintlify.com/api/user' \
+curl --location --request POST 'http://localhost:9090/api/invite' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Token <token>' \
+--header 'Authorization: Bearer <token>' \
 --data-raw '{
-    "current_token": ""
+    "job_id": "unique_job_id",
+    "job_title": "Indian Sales Representative",
+    "job_description": "MarketStar is looking for an Inside Sales Representative to help support our newest client...",
+    "applicant_full_name": "Nika Shelia",
+    "applicant_email": "nshprimary@gmail.com"
 }'
 ```
 
@@ -71,13 +51,7 @@ curl --location --request POST 'https://api.mintlify.com/api/user' \
 
 ```json Response
 {
-  "success": 1,
-  "user_group": {
-    "team_id": 3,
-    "token": "<user_group_token_to_auth_dashboard>",
-    "name": "Example 1",
-    "provided_id": "example_1"
-  }
+  "scheduleLink": "https://app.greetai.com/schedule/#1234
 }
 ```
 

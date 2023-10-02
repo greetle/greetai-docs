@@ -7,8 +7,8 @@
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#075AFF",
-    "light": "#075AFF",
+    "primary": "#fff",
+    "light": "#bbb",
     "dark": "#0D001D",
     "background": {
       "dark": "#090014"
@@ -16,6 +16,12 @@
     "anchors": {
       "from": "#FF7F57",
       "to": "#9563FF"
+    }
+  },
+  "api": {
+    "baseUrl": "https://messaging.greetai.co/api/",
+    "auth": {
+      "method": "bearer"
     }
   },
   "topbarLinks": [
@@ -39,11 +45,19 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction"]
     },
     {
       "group": "Integrations - ATS",
       "pages": ["Integrations/greenhouse"]
+    },
+    {
+      "group": "API Documentation",
+      "pages": ["api-reference/authentication"]
+    },
+    {
+      "group": "Endpoint Examples",
+      "pages": ["api-reference/endpoint/create"]
     }
   ],
   "footerSocials": {
