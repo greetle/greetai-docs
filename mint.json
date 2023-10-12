@@ -49,7 +49,7 @@
     },
     {
       "group": "Integrations - ATS",
-      "pages": ["Integrations/greenhouse"]
+      "pages": ["integrations/greenhouse"]
     },
     {
       "group": "API Documentation",
